@@ -2,7 +2,7 @@
  * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
  * Copyright 2011-2025 The Bootstrap Authors
  * Licensed under the Creative Commons Attribution 3.0 Unported License.
- */
+ 
 
 (() => {
     'use strict'
@@ -78,3 +78,22 @@
         })
     })
   })()
+*/
+// Manejador de cambio de tema con Bootstrap 5 y localStorage
+
+const themeToggle = document.getElementById('themeToggle');
+const htmlTag = document.documentElement;
+
+// Al cargar la página, aplicar tema guardado
+if (localStorage.getItem('theme') === 'dark') {
+  htmlTag.setAttribute('data-bs-theme', 'dark');
+  themeToggle.checked = true;
+}
+
+// Escuchar cambios en el switch
+themeToggle.addEventListener('change', () => {
+  const theme = themeToggle.checked ? 'dark' : 'light';
+  htmlTag.setAttribute('data-bs-theme', theme);
+  localStorage.setItem('theme', theme);
+});
+
